@@ -2,6 +2,15 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional custom dark styles */
+html.dark {
+  --tw-bg-opacity: 1;
+  background-color: rgba(15, 23, 42, var(--tw-bg-opacity)); /* example dark bg */
+}
 
 @theme inline {
   --color-background: var(--background);

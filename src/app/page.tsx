@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Github, Linkedin, Mail, Moon, Home, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { SunIcon } from "@radix-ui/react-icons";
+import './globals.css';
 
 export default function Portfolio() {
   return (
@@ -17,8 +23,8 @@ export default function Portfolio() {
           <EducationSection />
           <SkillsSection />
           <ProjectsSection />
-          <HackathonsSection />
           <CertificatesSection />
+          <ContactSection />
         </div>
         <SocialLinks />
       </div>
@@ -28,18 +34,24 @@ export default function Portfolio() {
 
 function HeroSection() {
   return (
-    <section className="py-24 text-center">
+    <section className="py-1 text-center">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
         <div className="flex-1 space-y-6 text-center lg:text-left">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-foreground">
-            Hi, I'm Shantanu 
-          </h1>
-          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            DevOps Engineer | Front-End Developer (react.js & TypeScript) | Passionate About CI/CD, Cloud, & Scalable Web Systems
+          <h1 className=" text-foreground text-6xl lg:text-7xl font-bold leading-tight ">Hi, I'm Shantanu</h1>
+          <p className="text-xl lg:text-2xl text-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            DevOps Engineer | Front-End Developer (react.js & TypeScript) | Passionate About CI/CD, Cloud, & Scalable Web Systems.
           </p>
-          <Button size="lg" className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3">
-            Resume
-          </Button>
+          <a
+  href="https://drive.google.com/file/d/1sBcEWsulH2SthBtq46R2DzzLqHLoLxDs/view?usp=drive_link" 
+  rel="noopener noreferrer"
+>
+  <Button
+    size="lg"
+    className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3"
+  >
+    Resume
+  </Button>
+</a>
         </div>
         <div className="flex-1 flex justify-center">
           <Avatar className="w-48 h-48 lg:w-56 lg:h-56 border-4 border-border/20 shadow-2xl">
@@ -55,8 +67,8 @@ function HeroSection() {
 function AboutSection() {
   return (
     <section className="py-8">
-      <h2 className="text-2xl font-bold mb-2 text-left">About</h2>
-      <p className="text-base text-muted-foreground leading-relaxed max-w-4xl text-left">
+      <h2 className="text-3xl font-bold mb-2 text-left text-foreground">About</h2>
+      <p className="text-lg text-foreground leading-relaxed max-w-4xl text-left">
         I'm a DevOps engineer with a front-end twist I build with Next.js and TypeScript, and I'm passionate about automation, cloud, and scalable systems. I've solved multiple DSA problems, which helps me think through complex issues logically and efficiently. Whether it's setting up CI/CD pipelines or building modern web apps, I love bridging development and operations to deliver clean, reliable solutions.
       </p>
     </section>
@@ -70,25 +82,25 @@ function WorkExperienceSection() {
       role: "Front-End Developer",
       type: "Intern",
       duration: "Feb 2024 - May 2024",
-      logo: "/file.svg"
+      logo: "/SkillZam.png"
     }
   ];
 
   return (
     <section className="py-8">
-      <h2 className="text-2xl font-bold mb-4 text-left">Work Experience</h2>
+      <h2 className="text-3xl font-bold mb-4 text-left text-foreground">Work Experience</h2>
       <div className="flex flex-col gap-4">
         {experiences.map((exp, idx) => (
           <div key={idx} className="flex items-center gap-4">
             <img src={exp.logo} alt={exp.company} className="w-12 h-12 rounded-full bg-white p-2 border" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-base truncate">{exp.company}</span>
-                <span className="text-xs bg-muted px-2 py-0.5 rounded-full font-medium">{exp.type}</span>
+                <span className="font-bold text-lg truncate text-foreground">{exp.company}</span>
+                <span className="text-sm bg-muted px-2 py-0.5 rounded-full font-medium">{exp.type}</span>
               </div>
-              <div className="text-sm text-muted-foreground leading-tight">{exp.role}</div>
+              <div className="text-base text-foreground leading-tight">{exp.role}</div>
             </div>
-            <div className="text-sm text-muted-foreground whitespace-nowrap ml-4">{exp.duration}</div>
+            <div className="text-base text-foreground whitespace-nowrap ml-4">{exp.duration}</div>
           </div>
         ))}
       </div>
@@ -102,23 +114,23 @@ function EducationSection() {
       institution: "Basaveshwar Engineering College",
       degree: "Bachelor of Engineering in Information Science",
       duration: "2020 - 2024",
-      logo: "/globe.svg"
+      logo: "/BEC.png"
     },
     
   ];
 
   return (
     <section className="py-8">
-      <h2 className="text-2xl font-bold mb-4 text-left">Education</h2>
+      <h2 className="text-3xl font-bold mb-4 text-left text-foreground">Education</h2>
       <div className="flex flex-col gap-4">
         {education.map((edu, idx) => (
           <div key={idx} className="flex items-center gap-4">
             <img src={edu.logo} alt={edu.institution} className="w-12 h-12 rounded-full bg-white p-2 border" />
             <div className="flex-1 min-w-0">
-              <span className="font-bold text-base truncate block">{edu.institution}</span>
-              <span className="text-sm text-muted-foreground block leading-tight">{edu.degree}</span>
+              <span className="font-bold text-lg truncate block text-foreground">{edu.institution}</span>
+              <span className="text-base text-foreground block leading-tight">{edu.degree}</span>
             </div>
-            <div className="text-sm text-muted-foreground whitespace-nowrap ml-4">{edu.duration}</div>
+            <div className="text-base text-foreground whitespace-nowrap ml-4">{edu.duration}</div>
           </div>
         ))}
       </div>
@@ -128,17 +140,17 @@ function EducationSection() {
 
 function SkillsSection() {
   const skills = [
-    "C", "C++", "JavaScript", "TypeScript", "React", "Next.js", "Redux",
-    "Node.js", "Express", "MongoDB", "PostgreSQL", "Prisma", "Tailwind CSS",
-    "Docker", "Redis"
+    "C", "C++", "JavaScript", "TypeScript", "React", "Next.js", "CI/CD Pipelines",
+    "Node.js", "Express", "MongoDB", "Azure", "Prisma", "Tailwind CSS",
+    "Docker", "Redis", "GitHub", "GitHub Actions"
   ];
 
   return (
     <section className="py-8">
-      <h2 className="text-2xl font-bold mb-4 text-left">Skills</h2>
+      <h2 className="text-3xl font-bold mb-4 text-left text-foreground">Skills</h2>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, idx) => (
-          <span key={idx} className="bg-muted text-foreground rounded-full px-3 py-1 text-sm font-medium border">
+          <span key={idx} className="bg-white text-black rounded-full px-3 py-1 text-base font-medium border">
             {skill}
           </span>
         ))}
@@ -150,9 +162,9 @@ function SkillsSection() {
 function ProjectsSection() {
   const projects = [
     {
-      title: "Deployit",
+      title: "Aartistly.com",
       year: "2025",
-      description: "Built a platform to deploy static websites with ease",
+      description: "Built a platform to instantly book top artists for your event",
       image: "/deployit.png"
     },
     {
@@ -194,88 +206,21 @@ function ProjectsSection() {
   );
 }
 
-function HackathonsSection() {
-  const hackathons = [
-    {
-      title: "CodeZen Hackathon 2025",
-      location: "Online",
-      year: "2025",
-      description: "Top 7 out of 50+ teams - Built an AI-powered Ayurvedic health assistant platform.",
-      logo: "CZ"
-    },
-    {
-      title: "NSUT Avinya'25 (ShlokaDecode)",
-      location: "Delhi, India",
-      year: "2025",
-      description: "Top 7 out of 30+ teams - Developed an interactive web app for the Hindi society.",
-      logo: "NS"
-    },
-    {
-      title: "TCS CodeVita Season 12",
-      location: "Global",
-      year: "2024",
-      description: "Secured Global Rank 1341 out of thousands of global participants.",
-      logo: "TC"
-    }
-  ];
-
-  return (
-    <section className="py-20">
-      <div className="text-center mb-12">
-        <Button variant="outline" size="sm" className="mb-6 rounded-full">
-          Hackathons
-        </Button>
-        <h2 className="text-4xl font-bold mb-6">I like <span className="text-primary">building</span> things.</h2>
-        <p className="text-muted-foreground max-w-4xl mx-auto text-lg leading-relaxed">
-          As a university student, I've participated in hackathons where passionate developers from across the country come together to build innovative products in just a few days. These events have shown me the power of collaboration, creativity, and fast-paced problem-solving.
-        </p>
-      </div>
-      <div className="space-y-6">
-        {hackathons.map((hackathon, index) => (
-          <Card key={index} className="border-border/30 bg-card/50 hover:bg-card/70 transition-colors duration-300">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-6">
-                <Avatar className="w-16 h-16 border-2 border-border/30">
-                  <AvatarFallback className="bg-primary text-primary-foreground text-lg font-semibold">
-                    {hackathon.logo}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold text-xl">{hackathon.title}</h3>
-                      <p className="text-muted-foreground">{hackathon.location}</p>
-                    </div>
-                    <span className="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">
-                      {hackathon.year}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">{hackathon.description}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function CertificatesSection() {
   const certificates = [
     {
-      title: "CodeHelp DSA Master Course",
+      title: "The Complete 2023 Web-Development Bootcamp",
       year: "2023",
       type: "Online",
-      description: "Completed Love Babbar's Supreme 2.0 course — covered all major DSA topics with hands-on problem solving.",
-      logo: "CH"
+      description: "The Complete 2023 Web Development Bootcamp is a comprehensive beginner-to-advanced course that teaches full-stack web development through hands-on projects.",
+      logo: "/udemy.png"
     },
     {
-      title: "GfG 160 Days DSA Program",
-      year: "2023",
+      title: "NPTEL Online Cloud Computing Certification",
+      year: "2024",
       type: "Online",
-      description: "Followed GeeksforGeeks' structured 160-day roadmap — practiced problems across arrays, trees, graphs, and DP.",
-      logo: "GF"
+      description: "A certified NPTEL course covering cloud fundamentals, virtualization, service models, and deployment with hands-on concepts and IIT-level instruction.",
+      logo: "/nptel.png"
     }
   ];
 
@@ -285,43 +230,68 @@ function CertificatesSection() {
         <Button variant="outline" size="sm" className="mb-6 rounded-full">
           Certificates
         </Button>
-        <h2 className="text-4xl font-bold mb-6">Sharpening my problem-solving skills</h2>
-        <p className="text-muted-foreground max-w-4xl mx-auto text-lg leading-relaxed">
-          As a college student passionate about Data Structures and Algorithms, I've completed structured DSA programs to build a strong foundation in problem-solving and system design. These certifications reflect my commitment to mastering core CS fundamentals through consistent practice and real-world challenges.
+        <h2 className="text-5xl font-bold mb-6 text-foreground">Sharpening my problem-solving skills</h2>
+        <p className="text-foreground max-w-4xl mx-auto text-xl leading-relaxed">
+        Passionate about Web Development and DevOps, I’ve completed structured programs that strengthened my skills in building scalable web applications and deploying them efficiently. These certifications reflect my commitment to mastering modern development workflows, automation, and real-world deployment strategies through consistent practice and hands-on projects..
         </p>
       </div>
-      <div className="space-y-6">
-        {certificates.map((cert, index) => (
-          <Card key={index} className="border-border/30 bg-card/50 hover:bg-card/70 transition-colors duration-300">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-6">
+      <div className="relative">
+        <div className="absolute left-7 top-10 bottom-2 w-0.5 bg-white/10"></div>
+        <div className="space-y-6">
+          {certificates.map((cert, index) => (
+            <div key={index} className="flex items-start gap-6 pb-6">
+              <div className="relative z-10">
                 <Avatar className="w-16 h-16 border-2 border-border/30">
-                  <AvatarFallback className="bg-secondary text-secondary-foreground text-lg font-semibold">
-                    {cert.logo}
-                  </AvatarFallback>
+                <Avatar className="w-16 h-16 border-2 border-border/30">
+  <AvatarImage src={cert.logo} alt={cert.title} />
+</Avatar>
                 </Avatar>
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold text-xl">{cert.title}</h3>
-                      <p className="text-muted-foreground">{cert.type}</p>
-                    </div>
-                    <span className="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">
-                      {cert.year}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">{cert.description}</p>
-                </div>
               </div>
-            </CardContent>
-          </Card>
-        ))}
+                          <div className="flex-1 space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-2xl text-foreground">{cert.title}</h3>
+                  <p className="text-foreground">{cert.type}</p>
+                </div>
+                <span className="text-base text-foreground bg-muted/50 px-3 py-1 rounded-full">
+                  {cert.year}
+                </span>
+              </div>
+                      <p className="text-foreground leading-relaxed text-lg">{cert.description}</p>
+            </div>
+            </div>
+          ))}
+        </div>
+        <div className="absolute left-7.5 top-35 w-225 h-0.5 bg-white/10"></div>
+      </div>
+    </section>
+  );
+}
+
+function ContactSection() {
+  return (
+    <section className="py-20">
+      <div className="text-center mb-12">
+        <Button variant="outline" size="sm" className="mb-6 rounded-full">
+          Contact
+        </Button>
+        <h2 className="text-5xl font-bold mb-6 text-foreground">Get in Touch</h2>
+        <p className="text-foreground max-w-3xl mx-auto text-xl">
+          Want to chat? Just shoot me a dm with a direct question on <a href="https://x.com/Shantaaaanu" className="text-blue-500 underline">twitter</a> and I'll respond whenever I can. I will ignore all soliciting.
+        </p>
       </div>
     </section>
   );
 }
 
 function SocialLinks() {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const socialLinks = [
     { icon: Home, label: "Home", href: "#" },
     { icon: Github, label: "GitHub", href: "https://github.com" },
@@ -351,22 +321,30 @@ function SocialLinks() {
             </Tooltip>
           ))}
           <Separator orientation="vertical" className="h-6" />
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
-              >
-                <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Toggle Theme</p>
-            </TooltipContent>
-          </Tooltip>
+          {mounted && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                  className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
+                >
+                  {resolvedTheme === "dark" ? (
+                    <SunIcon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                  ) : (
+                    <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                  )}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
         </div>
       </div>
     </TooltipProvider>
+  
   );
 }
