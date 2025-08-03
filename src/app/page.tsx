@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Github, Linkedin, Mail, Moon, Home, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, Moon, Home, ExternalLink, Twitter, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { SunIcon } from "@radix-ui/react-icons";
@@ -165,7 +165,8 @@ function ProjectsSection() {
       title: "Aartistly.com",
       year: "2025",
       description: "Built a platform to instantly book top artists for your event",
-      image: "/deployit.png"
+      image: "/deployit.png",
+      video: "/video/aartistly.mp4" 
     },
     {
       title: "Instant Messaging App",
@@ -190,7 +191,16 @@ function ProjectsSection() {
         {projects.map((project, index) => (
           <Card key={index} className="overflow-hidden border-border/30 bg-card/50">
             <div className="aspect-video bg-muted/50 flex items-center justify-center">
-              <div className="text-muted-foreground text-sm">Project Preview</div>
+              {project.video ? (
+                <video
+                  src={project.video}
+                  controls
+                  className="w-full h-full object-cover"
+                  preload="metadata"
+                />
+              ) : (
+                <div className="text-muted-foreground text-sm">No Preview Available</div>
+              )}
             </div>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-3">
@@ -205,6 +215,7 @@ function ProjectsSection() {
     </section>
   );
 }
+
 
 function CertificatesSection() {
   const certificates = [
@@ -232,7 +243,7 @@ function CertificatesSection() {
         </Button>
         <h2 className="text-5xl font-bold mb-6 text-foreground">Sharpening my problem-solving skills</h2>
         <p className="text-foreground max-w-4xl mx-auto text-xl leading-relaxed">
-        Passionate about Web Development and DevOps, I’ve completed structured programs that strengthened my skills in building scalable web applications and deploying them efficiently. These certifications reflect my commitment to mastering modern development workflows, automation, and real-world deployment strategies through consistent practice and hands-on projects..
+        Passionate about Web Development and DevOps, I’ve completed structured programs that strengthened my skills in building scalable web applications and deploying them efficiently. These certifications reflect my commitment to mastering modern development workflows, automation, and real-world deployment strategies through consistent practice and hands-on projects.
         </p>
       </div>
       <div className="relative">
@@ -294,26 +305,28 @@ function SocialLinks() {
 
   const socialLinks = [
     { icon: Home, label: "Home", href: "#" },
-    { icon: Github, label: "GitHub", href: "https://github.com" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-    { icon: ExternalLink, label: "Twitter", href: "https://twitter.com" },
-    { icon: Mail, label: "Email", href: "mailto:contact@example.com" },
+    { icon: Github, label: "GitHub", href: "https://github.com/Shantaaanu18" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/shantanu-kulkarni-393595226/" },
+    { icon: Twitter, label: "Twitter", href: "https://x.com/Shantaaaanu" },
+    { icon: Mail, label: "Email", href: "mailto:shantanusk2002@gmail.com" },
   ];
 
   return (
     <TooltipProvider>
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="flex items-center gap-4 bg-card/90 backdrop-blur-md border border-border/50 rounded-full px-8 py-4 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl group">
+        <div className="flex items-center gap-4 bg-card/90 backdrop-blur-md border border-border/50 rounded-full px-8 py-4 shadow-lg transition-all duration-300 hover:scale-110 group hover:shadow-[0_0_20px_2px_rgba(255,255,255,0.2)]">
           {socialLinks.map((link, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
-                >
-                  <link.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
-                </Button>
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
+                  >
+                    <link.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                  </Button>
+                </a>
               </TooltipTrigger>
               <TooltipContent>
                 <p>{link.label}</p>
@@ -331,7 +344,7 @@ function SocialLinks() {
                   className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
                 >
                   {resolvedTheme === "dark" ? (
-                    <SunIcon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                    <Sun className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   ) : (
                     <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   )}
@@ -345,6 +358,6 @@ function SocialLinks() {
         </div>
       </div>
     </TooltipProvider>
-  
   );
 }
+
