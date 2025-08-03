@@ -1,16 +1,45 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Github, Linkedin, Mail, Moon, Home, ExternalLink, Twitter, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Moon,
+  Home,
+  Twitter,
+  Sun
+} from "lucide-react";
 import { SunIcon } from "@radix-ui/react-icons";
-import './globals.css';
+
+import {
+  Button
+} from "@/components/ui/button";
+import {
+  Card,
+  CardContent
+} from "@/components/ui/card";
+import {
+  Badge
+} from "@/components/ui/badge";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage
+} from "@/components/ui/avatar";
+import {
+  Separator
+} from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
+
+import "./globals.css";
 
 export default function Portfolio() {
   return (
@@ -37,21 +66,21 @@ function HeroSection() {
     <section className="py-1 text-center">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
         <div className="flex-1 space-y-6 text-center lg:text-left">
-          <h1 className=" text-foreground text-6xl lg:text-7xl font-bold leading-tight ">Hi, I'm Shantanu</h1>
+          <h1 className="text-foreground text-6xl lg:text-7xl font-bold leading-tight">Hi, I&apos;m Shantanu</h1>
           <p className="text-xl lg:text-2xl text-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            DevOps Engineer | Front-End Developer (react.js & TypeScript) | Passionate About CI/CD, Cloud, & Scalable Web Systems.
+            DevOps Engineer | Front-End Developer (react.js &amp; TypeScript) | Passionate About CI/CD, Cloud, &amp; Scalable Web Systems.
           </p>
           <a
-  href="https://drive.google.com/file/d/1sBcEWsulH2SthBtq46R2DzzLqHLoLxDs/view?usp=drive_link" 
-  rel="noopener noreferrer"
->
-  <Button
-    size="lg"
-    className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3"
-  >
-    Resume
-  </Button>
-</a>
+            href="https://drive.google.com/file/d/1sBcEWsulH2SthBtq46R2DzzLqHLoLxDs/view?usp=drive_link"
+            rel="noopener noreferrer"
+          >
+            <Button
+              size="lg"
+              className="bg-foreground text-background hover:bg-foreground/90 px-8 py-3"
+            >
+              Resume
+            </Button>
+          </a>
         </div>
         <div className="flex-1 flex justify-center">
           <Avatar className="w-48 h-48 lg:w-56 lg:h-56 border-4 border-border/20 shadow-2xl">
@@ -69,7 +98,7 @@ function AboutSection() {
     <section className="py-8">
       <h2 className="text-3xl font-bold mb-2 text-left text-foreground">About</h2>
       <p className="text-lg text-foreground leading-relaxed max-w-4xl text-left">
-        I'm a DevOps engineer with a front-end twist I build with Next.js and TypeScript, and I'm passionate about automation, cloud, and scalable systems. I've solved multiple DSA problems, which helps me think through complex issues logically and efficiently. Whether it's setting up CI/CD pipelines or building modern web apps, I love bridging development and operations to deliver clean, reliable solutions.
+        I&apos;m a DevOps engineer with a front-end twist. I build with Next.js and TypeScript, and I&apos;m passionate about automation, cloud, and scalable systems. I&apos;ve solved multiple DSA problems, which helps me think through complex issues logically and efficiently. Whether it&apos;s setting up CI/CD pipelines or building modern web apps, I love bridging development and operations to deliver clean, reliable solutions.
       </p>
     </section>
   );
@@ -92,7 +121,7 @@ function WorkExperienceSection() {
       <div className="flex flex-col gap-4">
         {experiences.map((exp, idx) => (
           <div key={idx} className="flex items-center gap-4">
-            <img src={exp.logo} alt={exp.company} className="w-12 h-12 rounded-full bg-white p-2 border" />
+            <Image src={exp.logo} alt={exp.company} width={48} height={48} className="rounded-full bg-white p-2 border" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg truncate text-foreground">{exp.company}</span>
@@ -116,7 +145,6 @@ function EducationSection() {
       duration: "2020 - 2024",
       logo: "/BEC.png"
     },
-    
   ];
 
   return (
@@ -125,7 +153,7 @@ function EducationSection() {
       <div className="flex flex-col gap-4">
         {education.map((edu, idx) => (
           <div key={idx} className="flex items-center gap-4">
-            <img src={edu.logo} alt={edu.institution} className="w-12 h-12 rounded-full bg-white p-2 border" />
+            <Image src={edu.logo} alt={edu.institution} width={48} height={48} className="rounded-full bg-white p-2 border" />
             <div className="flex-1 min-w-0">
               <span className="font-bold text-lg truncate block text-foreground">{edu.institution}</span>
               <span className="text-base text-foreground block leading-tight">{edu.degree}</span>
@@ -165,14 +193,12 @@ function ProjectsSection() {
       title: "Aartistly.com",
       year: "2025",
       description: "Built a platform to instantly book top artists for your event",
-      image: "/deployit.png",
-      video: "/video/aartistly.mp4" 
+      video: "/video/aartistly.mp4"
     },
     {
       title: "Instant Messaging App",
       year: "2024",
-      description: "Real-time messaging application with instant notifications",
-      image: "/messaging.png"
+      description: "Real-time messaging application with instant notifications"
     }
   ];
 
@@ -184,7 +210,7 @@ function ProjectsSection() {
         </Button>
         <h2 className="text-4xl font-bold mb-6">Check out my latest work</h2>
         <p className="text-muted-foreground max-w-3xl mx-auto text-lg">
-          I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
+          I&apos;ve worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
         </p>
       </div>
       <div className="grid md:grid-cols-2 gap-8">
@@ -216,7 +242,6 @@ function ProjectsSection() {
   );
 }
 
-
 function CertificatesSection() {
   const certificates = [
     {
@@ -243,7 +268,7 @@ function CertificatesSection() {
         </Button>
         <h2 className="text-5xl font-bold mb-6 text-foreground">Sharpening my problem-solving skills</h2>
         <p className="text-foreground max-w-4xl mx-auto text-xl leading-relaxed">
-        Passionate about Web Development and DevOps, I’ve completed structured programs that strengthened my skills in building scalable web applications and deploying them efficiently. These certifications reflect my commitment to mastering modern development workflows, automation, and real-world deployment strategies through consistent practice and hands-on projects.
+          Passionate about Web Development and DevOps, I&apos;ve completed structured programs that strengthened my skills in building scalable web applications and deploying them efficiently.
         </p>
       </div>
       <div className="relative">
@@ -251,29 +276,24 @@ function CertificatesSection() {
         <div className="space-y-6">
           {certificates.map((cert, index) => (
             <div key={index} className="flex items-start gap-6 pb-6">
-              <div className="relative z-10">
-                <Avatar className="w-16 h-16 border-2 border-border/30">
-                <Avatar className="w-16 h-16 border-2 border-border/30">
-  <AvatarImage src={cert.logo} alt={cert.title} />
-</Avatar>
-                </Avatar>
-              </div>
-                          <div className="flex-1 space-y-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-2xl text-foreground">{cert.title}</h3>
-                  <p className="text-foreground">{cert.type}</p>
+              <Avatar className="w-16 h-16 border-2 border-border/30">
+                <AvatarImage src={cert.logo} alt={cert.title} />
+              </Avatar>
+              <div className="flex-1 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-semibold text-2xl text-foreground">{cert.title}</h3>
+                    <p className="text-foreground">{cert.type}</p>
+                  </div>
+                  <span className="text-base text-foreground bg-muted/50 px-3 py-1 rounded-full">
+                    {cert.year}
+                  </span>
                 </div>
-                <span className="text-base text-foreground bg-muted/50 px-3 py-1 rounded-full">
-                  {cert.year}
-                </span>
+                <p className="text-foreground leading-relaxed text-lg">{cert.description}</p>
               </div>
-                      <p className="text-foreground leading-relaxed text-lg">{cert.description}</p>
-            </div>
             </div>
           ))}
         </div>
-        <div className="absolute left-7.5 top-35 w-225 h-0.5 bg-white/10"></div>
       </div>
     </section>
   );
@@ -288,7 +308,7 @@ function ContactSection() {
         </Button>
         <h2 className="text-5xl font-bold mb-6 text-foreground">Get in Touch</h2>
         <p className="text-foreground max-w-3xl mx-auto text-xl">
-          Want to chat? Just shoot me a dm with a direct question on <a href="https://x.com/Shantaaaanu" className="text-blue-500 underline">twitter</a> and I'll respond whenever I can. I will ignore all soliciting.
+          Want to chat? Just shoot me a DM with a direct question on <a href="https://x.com/Shantaaaanu" className="text-blue-500 underline">Twitter</a> and I&apos;ll respond whenever I can.
         </p>
       </div>
     </section>
@@ -304,17 +324,17 @@ function SocialLinks() {
   }, []);
 
   const socialLinks = [
-    { icon: Home, label: "Home", href: "#" },
-    { icon: Github, label: "GitHub", href: "https://github.com/Shantaaanu18" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/shantanu-kulkarni-393595226/" },
-    { icon: Twitter, label: "Twitter", href: "https://x.com/Shantaaaanu" },
-    { icon: Mail, label: "Email", href: "mailto:shantanusk2002@gmail.com" },
+    { icon: Home, label: 'Home', href: '#' },
+    { icon: Github, label: 'GitHub', href: 'https://github.com/Shantaaanu18' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/shantanu-kulkarni-393595226/' },
+    { icon: Twitter, label: 'Twitter', href: 'https://x.com/Shantaaaanu' },
+    { icon: Mail, label: 'Email', href: 'mailto:shantanusk2002@gmail.com' },
   ];
 
   return (
     <TooltipProvider>
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="flex items-center gap-4 bg-card/90 backdrop-blur-md border border-border/50 rounded-full px-8 py-4 shadow-lg transition-all duration-300 hover:scale-110 group hover:shadow-[0_0_20px_2px_rgba(255,255,255,0.2)]">
+        <div className="flex items-center gap-4 bg-card/90 backdrop-blur-md border border-border/50 rounded-full px-8 py-4 shadow-xl transition-all duration-300 hover:scale-110 group hover:shadow-[0_0_20px_2px_rgba(255,255,255,0.15)]">
           {socialLinks.map((link, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
@@ -324,7 +344,7 @@ function SocialLinks() {
                     size="sm"
                     className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
                   >
-                    <link.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                    <link.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 text-foreground" />
                   </Button>
                 </a>
               </TooltipTrigger>
@@ -340,13 +360,13 @@ function SocialLinks() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                  onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                   className="h-10 w-10 p-0 hover:bg-muted transition-all duration-300 hover:scale-125 group-hover:scale-110"
                 >
-                  {resolvedTheme === "dark" ? (
-                    <Sun className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                  {resolvedTheme === 'dark' ? (
+                    <SunIcon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 text-foreground" />
                   ) : (
-                    <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                    <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 text-foreground" />
                   )}
                 </Button>
               </TooltipTrigger>
@@ -360,4 +380,3 @@ function SocialLinks() {
     </TooltipProvider>
   );
 }
-
