@@ -18,8 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Saurav - Full Stack Developer",
-  description: "Full-stack developer specializing in Next.js, TypeScript, and scalable web applications. 600+ DSA problems solved.",
+  title: "Shantanu-Portfolio"
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
@@ -10,10 +10,8 @@ import {
   Moon,
   Home,
   Twitter,
-  Sun
 } from "lucide-react";
 import { SunIcon } from "@radix-ui/react-icons";
-
 import {
   Button
 } from "@/components/ui/button";
@@ -21,9 +19,6 @@ import {
   Card,
   CardContent
 } from "@/components/ui/card";
-import {
-  Badge
-} from "@/components/ui/badge";
 import {
   Avatar,
   AvatarFallback,
@@ -39,25 +34,29 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 
+import PageWrapper from "../components/ui/pageWrapper";
 import "./globals.css";
+
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-6 py-12 max-w-5xl">
-        <div className="pl-8 lg:pl-16">
-          <HeroSection />
-          <AboutSection />
-          <WorkExperienceSection />
-          <EducationSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <CertificatesSection />
-          <ContactSection />
+    <PageWrapper>
+      <div className="min-h-screen bg-background text-foreground">
+        <div className="container mx-auto px-6 py-12 max-w-5xl">
+          <div className="pl-8 lg:pl-16">
+            <HeroSection />
+            <AboutSection />
+            <WorkExperienceSection />
+            <EducationSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <CertificatesSection />
+            <ContactSection />
+          </div>
+          <SocialLinks />
         </div>
-        <SocialLinks />
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
@@ -66,7 +65,7 @@ function HeroSection() {
     <section className="py-1 text-center">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
         <div className="flex-1 space-y-6 text-center lg:text-left">
-          <h1 className="text-foreground text-6xl lg:text-7xl font-bold leading-tight">Hi, I&apos;m Shantanu</h1>
+          <h1 className="text-foreground text-6xl lg:text-5xl font-bold leading-tight">Hi, I&apos;m Shantanu</h1>
           <p className="text-xl lg:text-2xl text-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
             DevOps Engineer | Front-End Developer (react.js &amp; TypeScript) | Passionate About CI/CD, Cloud, &amp; Scalable Web Systems.
           </p>
@@ -193,12 +192,16 @@ function ProjectsSection() {
       title: "Aartistly.com",
       year: "2025",
       description: "Built a platform to instantly book top artists for your event",
-      video: "/video/aartistly.mp4"
+      video: "/video/aartistly.mp4",
+      link: "https://artistly-app-ten.vercel.app/",
+      github: "https://github.com/Shantaaanu18/artistly-app"
     },
     {
       title: "Instant Messaging App",
       year: "2024",
-      description: "Real-time messaging application with instant notifications"
+      description: "Real-time messaging application with instant notifications",
+      link: "https://example.com/messaging-app",
+      github: "https://github.com/Shantaaanu18/messaging-app"
     }
   ];
 
@@ -215,25 +218,60 @@ function ProjectsSection() {
       </div>
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <Card key={index} className="overflow-hidden border-border/30 bg-card/50">
+          <Card
+            key={index}
+            className="group overflow-hidden border border-border/30 bg-card/50 transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+          >
             <div className="aspect-video bg-muted/50 flex items-center justify-center">
               {project.video ? (
                 <video
                   src={project.video}
-                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover"
                   preload="metadata"
                 />
               ) : (
-                <div className="text-muted-foreground text-sm">No Preview Available</div>
+                <div className="text-muted-foreground text-sm">
+                  No Preview Available
+                </div>
               )}
             </div>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-lg">{project.title}</h3>
-                <span className="text-sm text-muted-foreground">{project.year}</span>
+                <span className="text-sm text-muted-foreground">
+                  {project.year}
+                </span>
               </div>
-              <p className="text-sm text-muted-foreground">{project.description}</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                {project.description}
+              </p>
+              <div className="flex gap-3 flex-wrap">
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1 border rounded-md transition-colors duration-200 text-white border-white hover:bg-white hover:text-black"
+                  >
+                    Website
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1 border rounded-md flex items-center gap-1 transition-colors duration-200 text-white border-white hover:bg-white hover:text-black"
+                  >
+                    <Github className="w-4 h-4" />
+                    Source
+                  </a>
+                )}
+              </div>
             </CardContent>
           </Card>
         ))}
